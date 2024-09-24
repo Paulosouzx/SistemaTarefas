@@ -22,7 +22,9 @@ namespace SistemaTarefas.Repository
 
         public async Task<TaskModel> GetTaskById(int id)
         {
-            return await _dbContext.Tasks.FirstOrDefaultAsync(x => x.ID == id);
+            return await _dbContext.Tasks
+                .Include(x => x.User)
+                .FirstOrDefaultAsync(x => x.ID == id);
         }
 
         public async Task<TaskModel> AddTask(TaskModel task)
