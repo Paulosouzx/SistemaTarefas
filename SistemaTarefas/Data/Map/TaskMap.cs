@@ -12,6 +12,9 @@ namespace SistemaTarefas.Data.Map
             builder.Property(x => x.Name).IsRequired().HasMaxLength(200);
             builder.Property(x => x.Description).HasMaxLength(1000);
             builder.Property(x => x.Status).IsRequired();
+            builder.Property(x => x.UserID);
+
+            builder.HasOne(x => x.User);
         }
     }
 }
