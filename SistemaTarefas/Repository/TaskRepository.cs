@@ -34,6 +34,7 @@ namespace SistemaTarefas.Repository
 
             return task;
         }
+
         public async Task<TaskModel> UpdateTask(TaskModel task, int id)
         {
             TaskModel taskById = await GetTaskById(id) ?? throw new Exception($"Task ID not found: {id} not found in data base");
@@ -44,7 +45,6 @@ namespace SistemaTarefas.Repository
             await _dbContext.SaveChangesAsync();
 
             return taskById;
-
         }
 
         public async Task<bool> DeleteTask(int id)
@@ -52,8 +52,8 @@ namespace SistemaTarefas.Repository
             TaskModel taskById = await GetTaskById(id) ?? throw new Exception($"Task ID not found: {id} not found in data base");
             _dbContext.Tasks.Remove(taskById);
             _dbContext.SaveChanges();
-            return true;
 
+            return true;
         }
     }
 }
